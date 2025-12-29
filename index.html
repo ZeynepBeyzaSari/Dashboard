@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişisel Panel v4</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Kişisel Panel</div>
+        <div class="header-btns">
+            <button class="text-btn" onclick="openPoll()">Soru ?</button>
+            <button class="text-btn" onclick="openAccount()">Hesap Oluştur</button>
+        </div>
+    </header>
+
+    <main class="dashboard-grid">
+        <div class="card weather-area">
+            <div id="weather-icon"><i class="fas fa-cloud-sun" style="font-size: 4rem; color: #888;"></i></div>
+            <div class="weather-info">
+                <h1 id="temp">5°C</h1>
+                <p id="city-info">İstanbul, parçalı bulutlu</p>
+            </div>
+        </div>
+
+        <div class="card counter-area">
+            <h3>SAYAÇ</h3>
+            <div class="count-val" id="counter-val">0</div>
+            <div class="count-btns">
+                <button onclick="changeCounter(1)"><i class="fas fa-plus"></i></button>
+                <button onclick="resetCounter()"><i class="fas fa-undo"></i></button>
+                <button onclick="changeCounter(-1)"><i class="fas fa-minus"></i></button>
+            </div>
+        </div>
+
+        <div class="card clock-area">
+            <h2 id="clock">14:28:45</h2>
+            <p id="date">27 Aralık</p>
+        </div>
+
+        <div class="card todo-area">
+            <h3>GÖREVLER</h3>
+            <div class="todo-input-group">
+                <input type="text" id="todo-input" placeholder="Görev ekle...">
+                <button onclick="addTodo()"><i class="fas fa-plus"></i></button>
+            </div>
+            <ul id="todo-list" class="todo-list"></ul>
+        </div>
+
+        <div class="card calendar-area">
+            <div class="calendar-header">
+                <button onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
+                <h4 id="month-name">Aralık 2025</h4>
+                <button onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="calendar-weekdays">
+                <div>Pt</div><div>Sa</div><div>Ça</div><div>Pe</div><div>Cu</div><div>Ct</div><div>Pa</div>
+            </div>
+            <div id="calendar-days" class="calendar-days"></div>
+        </div>
+
+        <div class="card snake-preview-area" onclick="openGame()">
+            <i class="fas fa-gamepad" style="font-size: 2rem; color: #ff7f50;"></i>
+            <p>Yılan Oyunu</p>
+            <small>Başlatmak için tıkla</small>
+        </div>
+
+        <div class="card calc-area">
+            <input type="text" id="calc-display" readonly placeholder="0">
+            <div class="calc-grid">
+                <button onclick="clearDisplay()">AC</button>
+                <button onclick="deleteLast()">C</button>
+                <button onclick="appendToDisplay('/')" class="op">/</button>
+                <button onclick="appendToDisplay('*')" class="op">×</button>
+                <button onclick="appendToDisplay('7')">7</button>
+                <button onclick="appendToDisplay('8')">8</button>
+                <button onclick="appendToDisplay('9')">9</button>
+                <button onclick="appendToDisplay('-')" class="op">-</button>
+                <button onclick="appendToDisplay('4')">4</button>
+                <button onclick="appendToDisplay('5')">5</button>
+                <button onclick="appendToDisplay('6')">6</button>
+                <button onclick="appendToDisplay('+')" class="op">+</button>
+                <button onclick="appendToDisplay('1')">1</button>
+                <button onclick="appendToDisplay('2')">2</button>
+                <button onclick="appendToDisplay('3')">3</button>
+                <button onclick="calculateResult()" class="equal">=</button>
+                <button onclick="appendToDisplay('0')" class="double">0</button>
+                <button onclick="appendToDisplay('.')">.</button>
+            </div>
+        </div>
+    </main>
+
+    <div id="gameOverlay" class="overlay">
+        <div class="overlay-content">
+            <button class="close-btn" onclick="closeGame()">×</button>
+            <h2>YILAN OYUNU</h2>
+            <div id="snake-score">Skor: 0</div>
+            <canvas id="snakeGame" width="400" height="400"></canvas>
+            <button class="play-btn" onclick="startGame()">OYUNU BAŞLAT</button>
+        </div>
+    </div>
+
+    <div id="pollOverlay" class="overlay">
+        <div class="overlay-content" id="poll-container">
+            <button class="close-btn" onclick="closePoll()">×</button>
+            <h2>Sayfamı faydalı buldun mu?</h2>
+            <button class="poll-btn" onclick="submitPoll('Evet')">Evet. Çok beğendim.</button>
+            <button class="poll-btn" onclick="submitPoll('Hayır')">Geliştirilebilir.</button>
+        </div>
+    </div>
+
+    <div id="accountOverlay" class="overlay">
+        <div class="overlay-content">
+            <button class="close-btn" onclick="closeAccount()">×</button>
+            <h2>Hesap Oluştur</h2>
+            <div class="account-form" style="display:flex; flex-direction:column; gap:10px; margin-top:15px;">
+                <input type="text" id="reg-name" placeholder="Ad Soyad">
+                <input type="email" id="reg-email" placeholder="E-posta">
+                <input type="password" id="reg-pass" placeholder="Şifre">
+                <button class="play-btn" style="background:#ff7f50; color:white;" onclick="handleRegister()">Kayıt Ol</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
